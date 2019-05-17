@@ -48,7 +48,7 @@ class CategoryController extends Controller
        $request['slug']=str_slug($request->get('name'),'-');
        $request['user_id']=auth::user()->id;
          category::create($request->all());
-         return redirect()->route('category.index');
+         return redirect()->route('category.index')->with(['success' => 'Pesan Berhasil']);
         // return $request->all();
     }
 
@@ -62,7 +62,6 @@ class CategoryController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -92,7 +91,7 @@ class CategoryController extends Controller
         //
         $data=category::findOrFail($id);
         $data->update($request->all());
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with(['success' => 'category  Berhasil di update']);
 
 
     }
@@ -108,7 +107,7 @@ class CategoryController extends Controller
         //
         $data=category::findOrFail($id);
         $data->delete($data);
-        return redirect()->back();
+        return redirect()->route('category.index')->with(['success' => 'berhasil di delete']);
     }
     public function category(Request $request)
     {

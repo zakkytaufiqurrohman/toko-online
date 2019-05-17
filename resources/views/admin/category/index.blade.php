@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+@if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-block">
+                              <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+ @endif
 <div class="row">
     <div class="col-md-6">
             <div class="box box-primary">
@@ -56,6 +62,7 @@
                             <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
+
                         </form>
                     </div>
             </div>
