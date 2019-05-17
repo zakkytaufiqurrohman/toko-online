@@ -22,4 +22,5 @@ Auth::routes();
 Route::prefix('admin')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('/category', 'CategoryController');
+    Route::post('/categoryadd', 'CategoryController@category')->name('category.add');
 });

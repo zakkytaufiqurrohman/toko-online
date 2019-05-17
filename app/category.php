@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class category extends Model
 {
     //
-    protected $fillable=['slug'];
+    protected $fillable=['slug','icon','name','parent_id','user_id'];
 
     function masterCategory(){
         return $this->hasMany('App\category','parent_id');

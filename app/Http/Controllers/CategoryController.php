@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\category;
+use user;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $data=category::all();
+        $data=category::where('parent_id',null)->get();
         return view('admin.category.index',compact('data'));
     }
 
@@ -37,6 +39,17 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'name'=>'required',
+            'icon'=>'string',
+            'parent_id'=>'integer'
+        ]);
+
+       $request['slug']=str_slug($request->get('name'),'-');
+       $request['user_id']=auth::user()->id;
+         category::create($request->all());
+         return redirect()->route('category.index');
+        // return $request->all();
     }
 
     /**
@@ -59,8 +72,14 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-    }
+        $data=category::findOrFail($id);
+        if($data->parent == null){
+            // $category=category::where('parent_id',null)->get();
+            $category=category::all();
+            return view ('admin.category.edit',compact('data','category'));
+        }
 
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -71,6 +90,11 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data=category::findOrFail($id);
+        $data->update($request->all());
+        return redirect()->route('category.index');
+
+
     }
 
     /**
@@ -82,5 +106,19 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+        $data=category::findOrFail($id);
+        $data->delete($data);
+        return redirect()->back();
+    }
+    public function category(Request $request)
+    {
+        $this->validate($request,[
+            'name'=>'required',
+        ]);
+        $request['icon']='icon';
+        $request['slug']=str_slug($request->get('name'),'-');
+        $request['user_id']=auth::user()->id;
+        category::create($request->all());
+        return redirect()->route('category.index');
     }
 }
