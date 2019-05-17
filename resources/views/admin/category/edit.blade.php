@@ -23,7 +23,7 @@
                         </div>
                         <div class="form-group">
                                 <label for="category">icon</label>
-                                <input type="text" class="form-control" id="icon"  name="icon" value="{{$data->icon}}">
+                                <input type="text" class="form-control" id="icon"  name="icon" value="{{$data->icon}}" required>
                         </div>
                         <div class="form-group">
                           <label for="id">kategori</label>
@@ -62,7 +62,7 @@
                             <input type="hidden" name="_method" value="PATCH" >
                             <div class="form-group">
                                     <label for="category">category</label>
-                                    <input type="text" class="form-control" id="icon" placeholder="masukkan name category ex:gadget" name="name" value="{{$data->name}}">
+                                    <input type="text" class="form-control"  id="icon" placeholder="masukkan name category ex:gadget" name="name" value="{{$data->name}}" required >
                             </div>
                             <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Edit</button>

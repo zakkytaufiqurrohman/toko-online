@@ -88,7 +88,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //r
         $data=category::findOrFail($id);
         $data->update($request->all());
         return redirect()->route('category.index')->with(['success' => 'category  Berhasil di update']);
