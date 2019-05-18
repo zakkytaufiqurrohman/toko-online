@@ -272,6 +272,7 @@
 
           </ul>
         </li>
+        <li><a href="{{ route('admin.media')}}"><i class="fa fa-book"></i> <span>media</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-folder"></i> <span>Examples</span>

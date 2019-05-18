@@ -70,8 +70,13 @@
                     @endif
             </div>
             <div class="form-group">
-              <label for="exampleInputFile">upload foto</label>
-              <input type="file" id="exampleInputFile" name='photo'>
+              <label for="exampleInputFile" >upload foto</label>
+              <input type="file" id="exampleInputFile" name='photo' class="form-control{{ $errors->has('photo') ? ' is-invalid' : '' }}">
+              @if ($errors->has('photo'))
+              <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('photo') }}</strong>
+              </span>
+        @endif
             </div>
             <div class="checkbox">
               <label>
