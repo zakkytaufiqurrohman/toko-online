@@ -56,9 +56,9 @@
                         <option value="">---pilih category----</option>
                         @foreach ($category as $item)
                             <option value="{{$item->id}}" {{ ($data->category_id == $item->id ) ? 'selected="selected"' : ''}}>{{$item->name}}</option>
-                            {{-- @foreach ($item->masterCategory as $sub)
-                                 <option value="">-{{$sub->name}}</option>
-                            @endforeach --}}
+                            @foreach ($item->masterCategory as $sub)
+                                <option value="{{$sub->id}}" {{ ($data->category_id== $sub->id) ? 'selected="selected"' : '' }}>-{{$sub->name}}</option>
+                            @endforeach
                         @endforeach
 
                     </select>

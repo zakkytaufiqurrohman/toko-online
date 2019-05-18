@@ -57,9 +57,9 @@
                         <option value="">---pilih category----</option>
                         @foreach ($category as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>
-                            {{-- @foreach ($item->masterCategory as $sub)
-                                 <option value="">-{{$sub->name}}</option>
-                            @endforeach --}}
+                            @foreach ($item->masterCategory as $sub)
+                                <option value="{{ $sub->id}}">-{{$sub->name}}</option>
+                            @endforeach
                         @endforeach
 
                     </select>
