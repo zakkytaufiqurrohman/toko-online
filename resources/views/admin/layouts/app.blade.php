@@ -243,12 +243,20 @@
         </a>
         </li>
         {{-- product --}}
-        <li class="treeview ">
-                <a href="index.php">
-                  <i class="fa fa-files-o"></i>
-                  <span>products</span>
-                </a>
-         </li>
+        <li class="treeview">
+            <a href="#">
+              <i class="fa fa-laptop"></i>
+              <span>pruduct</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+            <li><a href="{{ route('product.index')}}"><i class="fa fa-circle-o"></i> list pruduct</a></li>
+            <li><a href="{{ route('product.create')}}"><i class="fa fa-circle-o"></i> Add product</a></li>
+
+            </ul>
+          </li>
         {{-- transaction --}}
         <li class="treeview">
           <a href="#">

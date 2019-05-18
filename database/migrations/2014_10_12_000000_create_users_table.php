@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->enum('gender',['L','P']);
             $table->date('birthday');
             $table->enum('role',['admin','supliyer','member']);
+            $table->enum('status',['0','1'])->default('0');
             $table->rememberToken();
             $table->timestamps();
         });
