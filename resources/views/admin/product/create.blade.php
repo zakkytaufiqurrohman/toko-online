@@ -52,6 +52,15 @@
                       @endif
             </div>
             <div class="form-group">
+                <label for="id">berat</label>
+                <input id="id" type="number" class="form-control{{ $errors->has('weigth') ? ' is-invalid' : '' }}" name="weigth" required>
+                   @if ($errors->has('weigth'))
+                      <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('weigth') }}</strong>
+                      </span>
+                  @endif
+        </div>
+            <div class="form-group">
                     <label for="id">category</label>
                     <select name="category_id" id="id"  class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" required>
                         <option value="">---pilih category----</option>
@@ -78,11 +87,7 @@
               </span>
         @endif
             </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox"> Check me out
-              </label>
-            </div>
+
           </div>
           <!-- /.box-body -->
 

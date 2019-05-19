@@ -28,8 +28,8 @@ class CreateTransactionsTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->integer('portal_code');
-            $table->enum('ekpedisi',['TIKI','JNE','POS']);
-            $table->enum('paymen',['0','1']);
+            $table->text('ekspedisi');
+            $table->enum('status',['0','1']);
             $table->timestamps();
         });
     }

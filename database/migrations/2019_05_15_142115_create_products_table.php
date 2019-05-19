@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->longtext('description');
             $table->integer('stock');
+            $table->integer('weigth');
             $table->integer('price');
             //relasi dengan category
             $table->unsignedInteger('category_id')->nullable();

@@ -267,7 +267,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> list transaction</a></li>
+          <li><a href="{{route('transaction.index')}}"><i class="fa fa-circle-o"></i> list transaction</a></li>
             <li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i> laporan</a></li>
 
           </ul>

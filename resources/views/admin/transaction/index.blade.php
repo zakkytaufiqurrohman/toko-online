@@ -25,33 +25,30 @@
       <table id="example1" class="table table-bordered table-striped">
         <thead>
         <tr>
-          <th>photo</th>
+          <th>no</th>
+          <th>kode</th>
           <th>name</th>
-          <th>Description</th>
-          <th>stok</th>
-          <th>price</th>
-          <th>berat</th>
-          <th>action</th>
+          <th>ekpedisi</th>
+          <th>status</th>
         </tr>
         </thead>
         <tbody>
-
+            @php
+                $no=1;
+            @endphp
             @foreach ($data as $item)
             <tr>
-                <td><img src="{{ asset('/assets/dist/img/'.$item->photo)}}" width="50" alt=""></td>
-                <td>{{ $item->name}}</td>
-                <td>{!! $item->description!!}</td>
-                <td>{{ $item->stock}}</td>
-                <td>{{ $item->price}}</td>
-                <td>{{ $item->weigth}}</td>
+                <td>{{ $no++}}</td>
+                <td>{{ $item->code}}</td>
+                <td>{{ $item->user->name}}</td>
+                <td>{{ $item->ekspedisi['name']}}</td>
                 <td>
-                <form action="{{route('product.destroy',$item->id)}}" method="POST">
-                    @csrf
-                    <input type="hidden" name="_method" value="DELETE">
-                    <a href="{{route('product.show',$item->id)}}" class="btn btn-info btn-sm">show</a>
-                    <a href="{{ route('product.edit',$item->id)}}" class="btn btn-primary btn-sm">edit</a>
-                    <button class="btn btn-danger btn-sm" onclick="return myFunction()";>delete</button>
-                </form>
+                    @if ($item->status == 0)
+                        <a href="{{url('admin/transaction/'.$item->code.'/'.$item->status)}}" class="btn btn-danger btn-sm">belum</a>
+                    @else
+                      <a href="{{url('admin/transaction/'.$item->code.'/'.$item->status)}} " class="btn btn-primary btn-sm">lunas</a>
+                    @endif
+                    <a href="{{url('admin/transaction/'.$item->code)}}" class="btn btn-primary btn-sm">detail</a>
                 </td>
             </tr>
              @endforeach

@@ -46,6 +46,7 @@ class ProductController extends Controller
             'description' => 'required',
             'stock' => 'required|int',
             'price' => 'required|int',
+            'weigth' => 'required|int',
             'category_id' => 'required|int',
         ]);
 
@@ -66,6 +67,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'stock' => $request->stock,
             'price' => $request->price,
+            'weigth' => $request->weigth,
             'category_id' => $request->category_id,
             'user_id'=>auth::user()->id,
         ]);
@@ -120,6 +122,7 @@ class ProductController extends Controller
             'description' => 'required',
             'stock' => 'required|int',
             'price' => 'required|int',
+            'weigth' => 'required|int',
             'category_id' => 'required|int',
         ]);
         $data->update([
@@ -129,6 +132,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'stock' => $request->stock,
             'price' => $request->price,
+            'weigth' => $request->weigth,
             'category_id' => $request->category_id,
             'user_id'=>auth::user()->id,
         ]);
