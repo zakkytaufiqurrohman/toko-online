@@ -49,17 +49,12 @@ class ProductController extends Controller
             'weigth' => 'required|int',
             'category_id' => 'required|int',
         ]);
-
         // menyimpan data file yang diupload ke variabel $file
         $file = $request->file('photo');
-
         $nama_file = time()."_".$file->getClientOriginalName();
-
               // isi dengan nama folder tempat kemana file diupload
         $tujuan_upload = 'assets/dist/img';
         $file->move($tujuan_upload,$nama_file);
-
-
         product::create([
             'photo' => $nama_file,
             'name' => $request->name,
@@ -72,7 +67,6 @@ class ProductController extends Controller
             'user_id'=>auth::user()->id,
         ]);
         return redirect()->route('product.index')->with('succes','data berhasil di tambahkan');
-
     }
 
     /**

@@ -45,10 +45,10 @@ class CategoryController extends Controller
             'parent_id'=>'integer'
         ]);
 
-       $request['slug']=str_slug($request->get('name'),'-');
-       $request['user_id']=auth::user()->id;
-         category::create($request->all());
-         return redirect()->route('category.index')->with(['success' => 'Pesan Berhasil']);
+        $request['slug']=str_slug($request->get('name'),'-');
+        $request['user_id']=auth::user()->id;
+        category::create($request->all());
+        return redirect()->route('category.index')->with(['success' => 'Pesan Berhasil']);
         // return $request->all();
     }
 
@@ -77,7 +77,6 @@ class CategoryController extends Controller
             $category=category::all();
             return view ('admin.category.edit',compact('data','category'));
         }
-
     }
     /**
      * Update the specified resource in storage.

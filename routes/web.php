@@ -28,4 +28,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/transaction','TransactionController@index')->name('transaction.index');
     Route::get('/transaction/{code}/{status}','TransactionController@status');
     Route::get('/transaction/{code}','TransactionController@show');
+    Route::get('/transaction/pdf/{code}/cetak','TransactionController@pdf');
 });

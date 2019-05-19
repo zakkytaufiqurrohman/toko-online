@@ -91,7 +91,7 @@
       </div>
       <!-- /.col -->
       <div class="col-xs-6">
-        <p class="lead">Amount Due 2/22/2014</p>
+      <p class="lead">tanggal: {{$data->created_at}}</p>
 
         <div class="table-responsive">
           <table class="table">
@@ -121,9 +121,10 @@
         <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
         <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
         </button>
-        <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-          <i class="fa fa-download"></i> Generate PDF
-        </button>
+            <a href="{{ url('admin/transaction/pdf/'.$data->code.'/cetak')}}" class="btn btn-primary pull-right" style="margin-right: 5px;" target="_blank">
+                    <i class="fa fa-download"></i> Generate PDF
+            </a>
+
       </div>
     </div>
   </section>
