@@ -273,6 +273,21 @@
           </ul>
         </li>
         <li><a href="{{ route('admin.media')}}"><i class="fa fa-book"></i> <span>media</span></a></li>
+
+        <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-laptop"></i>
+                  <span>User</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                <li><a href="{{ route('user.index')}}"><i class="fa fa-circle-o"></i>user</a></li>
+                <li><a href="{{ route('user.create')}}"><i class="fa fa-circle-o"></i> Add user</a></li>
+
+                </ul>
+              </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-folder"></i> <span>Examples</span>

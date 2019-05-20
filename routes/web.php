@@ -29,4 +29,13 @@ Route::prefix('admin')->group(function () {
     Route::get('/transaction/{code}/{status}','TransactionController@status');
     Route::get('/transaction/{code}','TransactionController@show');
     Route::get('/transaction/pdf/{code}/cetak','TransactionController@pdf');
+
+    // user
+    Route::get('/user','UserController@index')->name('user.index');
+    Route::get('/user/{id}','UserController@status');
+    Route::get('/create','UserController@create')->name('user.create');
+    Route::post('user/store','UserController@store')->name('user.store');
+    Route::get('user/edit/{id}','UserController@edit')->name('user.edit');
+    Route::patch('user/update/{id}','UserController@update')->name('user.update');
+    Route::delete('user/delete/{id}','UserController@delete')->name('user.delete');
 });
