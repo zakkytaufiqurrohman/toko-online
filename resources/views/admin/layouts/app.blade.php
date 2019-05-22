@@ -70,7 +70,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                      <img src="{{ asset(auth::user()->photo) }}" class="img-circle" alt="User Image">
+                      <img src="{{ asset('assets/dist/img/'.auth::user()->photo) }}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -141,13 +141,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="{{ asset(auth::user()->photo)}}" class="user-image" alt="User Image">
+            <img src="{{ asset('assets/dist/img/'.auth::user()->photo) }}" class="user-image" alt="User Image">
               <span class="hidden-xs">tuku.com</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-              <img src="{{ asset(auth::user()->photo) }}" class="img-circle" alt="User Image">
+              <img src="{{ asset('assets/dist/img/'.auth::user()->photo) }}" class="img-circle" alt="User Image">
 
                 <p>
                   {{auth::user()->name}}
@@ -208,7 +208,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-        <img src="{{ asset(auth::user()->photo )}}" class="img-circle" >
+        <img src="{{ asset('assets/dist/img/'.auth::user()->photo) }}" class="img-circle" >
         </div>
         <div class="pull-left info">
         <p>{{ auth::user()->name}}</p>
@@ -239,8 +239,8 @@
         {{-- product --}}
         <li class="treeview">
             <a href="#">
-              <i class="fa fa-laptop"></i>
-              <span>pruduct</span>
+              <i class="fa fa-fw fa-newspaper-o"></i>
+              <span>product</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -254,7 +254,7 @@
         {{-- transaction --}}
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-laptop"></i>
+            <i class="fa fa-fw fa-cart-arrow-down"></i>
             <span>transaction</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -266,11 +266,11 @@
 
           </ul>
         </li>
-        <li><a href="{{ route('admin.media')}}"><i class="fa fa-book"></i> <span>media</span></a></li>
+        <li><a href="{{ route('admin.media')}}"><i class="fa fa-fw fa-folder-open"></i> <span>media</span></a></li>
 
         <li class="treeview">
                 <a href="#">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-fw fa-group"></i>
                   <span>User</span>
                   <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>

@@ -9,8 +9,12 @@ class UserController extends Controller
 {
     //
     public function index(){
-        $data=user::where('role','!=',Auth::user()->role)->get();
-        return view('admin.user.index',compact('data'));
+        $x=user::where('id',Auth::user()->id)->first();
+        if(Auth::user()->id == $x->id){
+             $data=user::where('role','!=',Auth::user()->role)->get();
+             return view('admin.user.index',compact('data'));
+        }
+
     }
     public function status($id){
         $change=0;

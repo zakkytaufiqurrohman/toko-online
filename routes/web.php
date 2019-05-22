@@ -11,13 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     // return view('welcome');
 
+// });
+// Route::get('/','front@index');
 Auth::routes();
-
-
 
 Route::prefix('admin')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
@@ -29,7 +28,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/transaction/{code}/{status}','TransactionController@status');
     Route::get('/transaction/{code}','TransactionController@show');
     Route::get('/transaction/pdf/{code}/cetak','TransactionController@pdf');
-
     // user
     Route::get('/user','UserController@index')->name('user.index');
     Route::get('/user/{id}','UserController@status');
@@ -38,4 +36,8 @@ Route::prefix('admin')->group(function () {
     Route::get('user/edit/{id}','UserController@edit')->name('user.edit');
     Route::patch('user/update/{id}','UserController@update')->name('user.update');
     Route::delete('user/delete/{id}','UserController@delete')->name('user.delete');
+
 });
+//
+Route::get('/','Home\HomePageController@index');
+
