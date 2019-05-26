@@ -85,9 +85,6 @@
                               document.getElementById('1').onclick = reply_click;
                               document.getElementById('2').onclick = reply_click;
                 </script> --}}
-
-
-
                   <p class="price">
                      IDR: {{ number_format($detail_product->price)}}
                   </p>
@@ -104,8 +101,15 @@
               </div> --}}
             </div>
           </div>
+
+            <div class="avatar"> <a href="{{route('supliyer.detail',$detail_product->user_id)}}"><img alt="" width="70" src="{{ asset('assets/dist/img/'.$detail_product->user->photo)}}" class="img-fluid rounded-circle"> </a>
+                    <div class="title">
+                        <p class="ml-3">{{$detail_product->user->name}}</p>
+                    </div>
+            </div>
+
           <div id="details" class="box mb-4 mt-4">
-            <p></p>
+
             <h4>Product details</h4>
             {{-- <p>White lace top, woven, has a round neck, short sleeves, has knitted lining attached</p>
             <h4>Material & care</h4>
@@ -124,6 +128,7 @@
             <p>{!!$detail_product->description!!}</p>
 
           </div>
+
           <div id="product-social" class="box social text-center mb-5 mt-5">
             <h4 class="heading-light">Show it to your friends</h4>
             <ul class="social list-inline">

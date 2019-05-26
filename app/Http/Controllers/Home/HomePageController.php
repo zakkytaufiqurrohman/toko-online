@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\product;
 use App\category;
+use App\user;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 class HomePageController extends Controller
 {
     //
@@ -47,8 +50,42 @@ class HomePageController extends Controller
 
         $category=$this->category;
         $detail_product=Product::where('slug',$slug)->first();
+        // untuk menampilkan produk lain selain produk ini
         $product=product::where('slug','!=',$slug)->get();
         return view('homePage.detail_product',compact('category','detail_product','product'));
+    }
+    public function supliyer(){
+        $category=$this->category;
+        // $supliyer=user::where('role','supliyer')->get();
+        $x=['role'=>'supliyer','status'=>'1'];
+        $supliyer=user::where($x)->get();
+        return view('homePage.supliyer',compact('category','supliyer'));
+    }
+    public function detailSupliyer($id){
+        $category=$this->category;
+        $detail_supliyer=Product::where('user_id',$id)->get();
+        $supliyer=Product::where('user_id',$id)->first();
+        return view('homePage.detail_supliyer',compact('category','detail_supliyer','supliyer'));
+    }
+    public function register(){
+        $category=$this->category;
+        return view('homePage.register',compact('category'));
+    }
+    public function store(Request $request){
+        $this->validate($request,[
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'username'=>'required',
+            'address'=>'required',
+            'phone'=>'required',
+            'gender'=>'required',
+            'birthday'=>'required',
+            'role'=>'required',
+       ]);
+       $request['password']=Hash::make($request->get('password'));
+       user::create($request->all());
+        return redirect()->route('home')->with('edit','user berhasil di tambah');
     }
 
 }

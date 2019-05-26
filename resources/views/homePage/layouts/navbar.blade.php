@@ -10,7 +10,7 @@
             <li class="nav-item dropdown menu-large"><a href="{{route('product')}}" >Product</a>
                 </li>
                 <!-- ========== FULL WIDTH MEGAMENU ==================-->
-                <li class="nav-item dropdown menu-large"><a href="#" data-hover="dropdown" data-delay="200" ">Supplier </a>
+            <li class="nav-item dropdown menu-large"><a href="{{route('supliyer')}}" data-hover="dropdown" data-delay="200" ">Supplier </a>
                 </li>
                       <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle">Category <b class="caret"></b></a>
                   <ul class="dropdown-menu megamenu">
