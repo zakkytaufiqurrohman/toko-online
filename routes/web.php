@@ -39,5 +39,8 @@ Route::prefix('admin')->group(function () {
 
 });
 //
-Route::get('/','Home\HomePageController@index');
+Route::get('/','Home\HomePageController@index')->name('home');
+Route::get('/product','Home\HomePageController@product')->name('product');
+Route::get('/product/{slug}','Home\HomePageController@category')->name('product.category');
+Route::get('/product/detail/{slug}','Home\HomePageController@detail')->name('product.detail.category');
 
