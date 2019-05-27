@@ -130,14 +130,11 @@
                                             <strong>{{ $errors->first('phone') }}</strong>
                                         </span>
                                     @endif
-
                             </div>
                             {{-- role --}}
                             <div class="form-group">
                                 <label for="role" >{{ __('role') }}</label>
-
                                     <select name="role" id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" >
-
                                         <option value="supliyer">supliyer</option>
                                         <option value="member">member</option>
                                     </select>

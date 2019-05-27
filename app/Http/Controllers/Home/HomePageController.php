@@ -8,6 +8,7 @@ use App\category;
 use App\user;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Mail;
 class HomePageController extends Controller
 {
     //
@@ -72,6 +73,7 @@ class HomePageController extends Controller
         return view('homePage.register',compact('category'));
     }
     public function store(Request $request){
+        $remember_token=base64_encode($request['email']);
         $this->validate($request,[
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -82,10 +84,26 @@ class HomePageController extends Controller
             'gender'=>'required',
             'birthday'=>'required',
             'role'=>'required',
+
        ]);
+       $request['remember_token']=$remember_token;
        $request['password']=Hash::make($request->get('password'));
        user::create($request->all());
+       Mail::send('view_email',array('firstname'=>$request['name'],'remember_token'=>$remember_token),function($pesan) use($request){
+           $pesan->to($request['email'],'verifikasi')->subject('verifikasi email');
+           $pesan->from('taufiqurrohmanzq@gmail.com','verifikasi akun email anda');
+       });
         return redirect()->route('home')->with('edit','user berhasil di tambah');
+    }
+    public function verifikasi ($token){
+
+        $data=user::where('remember_token',$token)->first();
+        if($data->status =='0'){
+            $data->status='1';
+        }
+        $data->remember_token=str_random(100);
+        $data->save();
+        return redirect()->route('auth.register');
     }
 
 }

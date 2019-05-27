@@ -47,4 +47,5 @@ Route::get('/supliyer','Home\HomePageController@supliyer')->name('supliyer');
 Route::get('/supliyer/detail/{id}','Home\HomePageController@detailSupliyer')->name('supliyer.detail');
 Route::get('/auth/register','Home\HomePageController@register')->name('auth.register');
 Route::post('/auth/store','Home\HomePageController@store')->name('auth.store');
+Route::get('/verifikasi/{token}','Home\HomePageController@verifikasi')->name('verifikasi');
 
