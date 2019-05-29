@@ -105,5 +105,24 @@ class HomePageController extends Controller
         $data->save();
         return redirect()->route('auth.register');
     }
+    public function login(Request $request){
+
+        if(auth::attempt(['email'=>$request['email'],'password'=>$request['password']])){
+            $status=user::where('id',auth::user()->id)->first();
+
+            if($status->status == '0'){
+                auth::logout();
+                return redirect()->route('home')->with('success','email anda belum di verifikasi');
+
+            }
+            else{
+                return redirect()->route('home');
+            }
+        }
+        else {
+             return redirect()->route('home')->with('success','password / email salah');
+
+        }
+    }
 
 }

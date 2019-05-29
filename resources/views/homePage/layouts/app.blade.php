@@ -15,7 +15,7 @@
     <!-- Google fonts - Roboto-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
     <!-- Bootstrap Select-->
-    <link rel="stylesheet" href="{{ asset('assets/user/vendor/bootstrap-select/css/bootstrap-select.min.css')}}">
+
     <!-- owl carousel-->
     <link rel="stylesheet" href="{{ asset('assets/user/vendor/owl.carousel/assets/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/user/vendor/owl.carousel/assets/owl.theme.default.css')}}">
@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('assets/user/css/style.default.css')}}" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('assets/user/css/custom.css')}}">
+    <script src="{{ asset('assets/user/vendor/jquery/jquery.min.js')}}"></script>
     <!-- Favicon and apple touch icons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -38,6 +39,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
+
     <div id="all">
       <!-- Top bar-->
       <div class="top-bar">
@@ -64,8 +66,10 @@
           </div>
         </div>
       </div>
+
       <!-- Top bar end-->
       <!-- Login Modal-->
+
       <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true" class="modal fade">
         <div role="document" class="modal-dialog">
           <div class="modal-content">
@@ -73,13 +77,16 @@
               <h4 id="login-modalLabel" class="modal-title">Customer Login</h4>
               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
             </div>
+            <p class="ml-3 text-danger" id="23" ></p>
             <div class="modal-body">
-              <form action="customer-orders.html" method="get">
+            <form action="{{route('auth.login')}}" method="post">
+                @csrf
+
                 <div class="form-group">
-                  <input id="email_modal" type="text" placeholder="email" class="form-control">
+                  <input id="email_modal" type="text" name="email" placeholder="email" class="form-control">
                 </div>
                 <div class="form-group">
-                  <input id="password_modal" type="password" placeholder="password" class="form-control">
+                  <input id="password_modal" type="password" name="password" placeholder="password" class="form-control">
                 </div>
                 <p class="text-center">
                   <button class="btn btn-template-outlined"><i class="fa fa-sign-in"></i> Log in</button>
@@ -91,6 +98,16 @@
           </div>
         </div>
       </div>
+      @if ($message = Session::get('success'))
+        <script>
+                var data='{{Session::get('success')}}';
+                $(window).on('load',function(){
+                $('#login-modal').modal('show');
+                });
+                $('#23').html(data);
+        </script>
+     @endif
+
       <!-- Login modal end-->
       <!-- Navbar Start-->
 

@@ -1,6 +1,7 @@
 @extends('homePage.layouts.app')
 @section('content')
 @include('homePage.layouts.homeSlider')
+
 <div id="content">
 <div class="container">
     <div class="row bar">
