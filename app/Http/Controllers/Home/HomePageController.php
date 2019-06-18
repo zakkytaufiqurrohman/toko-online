@@ -84,7 +84,6 @@ class HomePageController extends Controller
             'gender'=>'required',
             'birthday'=>'required',
             'role'=>'required',
-
        ]);
        $request['remember_token']=$remember_token;
        $request['password']=Hash::make($request->get('password'));
@@ -109,11 +108,9 @@ class HomePageController extends Controller
 
         if(auth::attempt(['email'=>$request['email'],'password'=>$request['password']])){
             $status=user::where('id',auth::user()->id)->first();
-
             if($status->status == '0'){
                 auth::logout();
                 return redirect()->route('home')->with('success','email anda belum di verifikasi');
-
             }
             else{
                 return redirect()->route('home');

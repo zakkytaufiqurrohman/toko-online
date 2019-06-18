@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+    @yield('head')
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="{{ asset('assets/user/vendor/bootstrap/css/bootstrap.min.css')}}">
     <!-- Font Awesome CSS-->
@@ -54,13 +55,29 @@
                   <li class="list-inline-item"><a href="#"><i class="fa fa-phone"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                 </ul>
-            <div class="login"><a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Sign In</span></a><a href="{{route('auth.register')}}" class="signup-btn"><i class="fa fa-user"></i><span class="d-none d-md-inline-block">Sign Up</span></a></div>
+                @if (! auth::user())
+                <div class="login"><a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Sign In</span></a><a href="{{route('auth.register')}}" class="signup-btn"><i class="fa fa-user"></i><span class="d-none d-md-inline-block">Sign Up</span></a></div>
+                @endif
                 <ul class="social-custom list-inline">
                   <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                 </ul>
+                @if (auth::user())
+
+            <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle"> <img src="{{ asset('assets/dist/img/'.auth::user()->photo)}} " alt="" width="20" class="rounded-circle"> {{ auth::user()->name}}</a>
+                    <ul class="dropdown-menu">
+                      <li class="dropdown-item"><a href="contact.html" class="nav-link">my account</a></li>
+                      <li class="dropdown-item"><a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}</a></li>
+                    </ul>
+                </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endif
               </div>
             </div>
           </div>
@@ -119,6 +136,7 @@
      @include('homePage.layouts.footer')
     </div>
     <!-- Javascript files-->
+    @yield('footer')
     <script src="{{ asset('assets/user/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('assets/user/vendor/popper.js/umd/popper.min.js')}}"> </script>
     <script src="{{ asset('assets/user/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
@@ -131,5 +149,6 @@
     <script src="{{ asset('assets/user/vendor/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
     <script src="{{ asset('assets/user/vendor/jquery.scrollto/jquery.scrollTo.min.js')}}"></script>
     <script src="{{ asset('assets/user/js/front.js')}}"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
   </body>
 </html>

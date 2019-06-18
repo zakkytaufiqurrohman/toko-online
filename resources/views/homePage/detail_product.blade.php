@@ -39,7 +39,9 @@
             <div class="col-sm-6">
                    <h2 class="text-center">{{$detail_product->name}}</h2>
               <div class="box mt-2">
-                <form>
+                    <form action="{{route('cart.index')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$detail_product->id}}">
                     <p>stock:{{$detail_product->stock}}</p>
                     <p>weigth:{{$detail_product->weigth}}</p>
                     <select class="bs-select">
@@ -49,9 +51,9 @@
                       <option value="x-large">X Large</option>
                     </select><br>
                    <label for="qyt">qyt:</label>
-                    <select class="bs-select">
+                    <select class="bs-select" name="qyt">
                     @for ($i = 1; $i <=$detail_product->stock; $i++)
-                    <option value="{{$i}}">{{$i}}</option>
+                        <option value="{{$i}}">{{$i}}</option>
                     @endfor
                   </select>
                     {{-- tombol + - --}}
@@ -89,8 +91,8 @@
                      IDR: {{ number_format($detail_product->price)}}
                   </p>
                   <p class="text-center">
-                    <button type="submit" class="btn btn-template-outlined"><i class="fa fa-shopping-cart"></i> Add to cart</button>
-                    <button type="submit" data-toggle="tooltip" data-placement="top" title="Add to wishlist" class="btn btn-default"><i class="fa fa-heart-o"></i></button>
+                  <button type="submit" class="btn btn-template-outlined"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                    {{-- <button type="submit" data-toggle="tooltip" data-placement="top" title="Add to wishlist" class="btn btn-default"><i class="fa fa-heart-o"></i></button> --}}
                   </p>
                 </form>
               </div>

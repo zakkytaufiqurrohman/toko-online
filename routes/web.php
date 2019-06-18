@@ -49,4 +49,8 @@ Route::get('/auth/register','Home\HomePageController@register')->name('auth.regi
 Route::post('/auth/store','Home\HomePageController@store')->name('auth.store');
 Route::get('/verifikasi/{token}','Home\HomePageController@verifikasi')->name('verifikasi');
 Route::post('/auth/login','Home\HomePageController@login')->name('auth.login');
-
+// add to cart
+Route::post('addcart','Home\CartController@index')->name('cart.index');
+Route::get('keranjang','Home\CartController@keranjang')->name('cart.keranjang');
+Route::get('/update/{data}','Home\CartController@update')->name('cart.update');
+Route::get('/delete/{data}','Home\CartController@delete')->name('cart.delete');
