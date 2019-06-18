@@ -54,3 +54,4 @@ Route::post('addcart','Home\CartController@index')->name('cart.index');
 Route::get('keranjang','Home\CartController@keranjang')->name('cart.keranjang');
 Route::get('/update/{data}','Home\CartController@update')->name('cart.update');
 Route::get('/delete/{data}','Home\CartController@delete')->name('cart.delete');
+Route::get('/form_pesanan','Home\CartController@form')->name('cart.form');
