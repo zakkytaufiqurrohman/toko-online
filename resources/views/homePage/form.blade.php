@@ -1,6 +1,5 @@
 @extends('homePage.layouts.app')
 @section('head')
-
 @endsection
 @section('content')
 <div id="heading-breadcrumbs">
@@ -43,33 +42,17 @@
                     </div>
                     </div>
                     <div class="row">
-                      {{-- <div class="col-sm-12 col-md-12">
-                        <div class="form-group">
-                          <label for="alamat">alamat</label>
-                          <input id="alamat" type="text" class="form-control">
-                        </div>
-                      </div> --}}
-                      <div class="col-sm-6 col-md-4">
-
                         @php
                             $city=city();
                             $city=json_decode($city,true);
                         @endphp
-                        <div class="form-group">
-                          <label for="state">kota</label>
-                          <select id="courier" class="form-control">
-                              <option value="">pilih courier</option>
-                              <option value="jne">jne</option>
-                          </select>
-                        </div>
-                      </div>
                       <div class="col-sm-6 col-md-4">
                         <div class="form-group">
-                          <label for="kota">kota</label>
-                          <select id="courier" class="form-control">
+                          <label for="select-search">kota</label>
+                          <select id="select-search" class="form-control" onchange="test()" >
                               <option value="">kota</option>
-                              @foreach ($city['rajaongkir']['results'] as $kota)   
-                                <option value="jne">{{ $kota['city_name']}}</option>
+                              @foreach ($city['rajaongkir']['results'] as $kota)
+                                <option value="{{$kota['city_id']}}">{{ $kota['city_name']}}</option>
                               @endforeach
                           </select>
                         </div>
@@ -77,9 +60,31 @@
                     <div class="col-sm-6 col-md-4">
                         <div class="form-group">
                           <label for="country">kode pos</label>
-                          <input type="number" name="kode_pos" class="form-control">
+                          <input type="tetx" name="kode_pos" class="form-control" id="kode_pos">
                         </div>
                     </div>
+                    <div class="col-sm-6 col-md-4">
+                            <div class="form-group">
+                              <label for="state">courier</label>
+                              <select id="courier" class="form-control" onchange="cek()">
+                                  <option value="">pilih courier</option>
+                                  <option value="jne">jne</option>
+                                  <option value="tiki">tiki</option>
+                              </select>
+                            </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12">
+                        <div class="form-group">
+                          <label for="province">province</label>
+                          <input id="province" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12">
+                            <div class="form-group">
+                              <label for="alamat">alamat</label>
+                              <input id="alamat" type="text" class="form-control">
+                            </div>
+                        </div>
                     </div>
                   </div>
                   <div class="box-footer d-flex flex-wrap align-items-center justify-content-between">
@@ -101,16 +106,13 @@
                 <tbody>
                   <tr>
                     <td>Order subtotal</td>
-                    <th>$446.00</th>
+                    <th><?php echo Cart::subtotal(); ?></th>
                   </tr>
                   <tr>
                     <td>Shipping and handling</td>
-                    <th>$10.00</th>
+                    <th id="ongkir"></th>
                   </tr>
-                  <tr>
-                    <td>Tax</td>
-                    <th>$0.00</th>
-                  </tr>
+
                   <tr class="total">
                     <td>Total</td>
                     <th>$456.00</th>
@@ -142,4 +144,48 @@
            }); //end
         }
 </script>
+
+<script>
+    function test(){
+        cek();
+        kota();
+    }
+</script>
+<script>
+    function cek(){
+     var data=$("#select-search").val();
+     var courier=$('#courier').val();
+     $.ajax({
+               url: "ongkir/"+data,
+               type:"get",
+
+               data: {'destination':data,'courier':courier},
+                    success:function(data){
+                    $('#ongkir').text(data);
+                    console.log(data);
+               }
+           }); //end
+    }
+</script>
+<script>
+    function kota(){
+        var data=$("#select-search").val();
+       $.ajax({
+            type:"get",
+            url:"{{url('idkota')}}/"+data,
+            dataType: 'json',
+            success:function(data){
+                $('#province').val(data.rajaongkir.results.province);
+                $('#kode_pos').val(data.rajaongkir.results.postal_code);
+            }
+       })
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script>
+        $('#select-search').select2({
+            placeholder:"Select a city...",
+            allowClear:true
+        });
+    </script>
 @endsection

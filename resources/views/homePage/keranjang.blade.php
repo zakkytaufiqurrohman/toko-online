@@ -34,7 +34,6 @@
                       <th colspan="2">Product</th>
                       <th>Quantity</th>
                       <th>Unit price</th>
-
                       <th colspan="2">Total</th>
                     </tr>
                   </thead>
@@ -45,7 +44,7 @@
                                 <td>
                                     <td><?php echo $row->name ?></td>
                                     <td>
-                                   <input type="text" name="pages_title[{{$i}}]" class="qyt" onBlur="saveCart(this);" value="<?php echo $row->qty; ?>" id="{{$row->rowId}}" class="form-control">
+                                   <input type="text" name="qyt" class="qyt" onBlur="saveCart(this);" value="<?php echo $row->qty; ?>" id="{{$row->rowId}}" class="form-control">
                                     {{-- <input type="text" value="{{$row->rowId}}" class="key"> --}}
                                     </td>
                                     <td>RP.<?php echo $row->price; ?></td>
@@ -62,7 +61,6 @@
                   </tfoot>
                 </table>
               </div>
-
               <div class="box-footer d-flex justify-content-between align-items-center">
                 <div class="left-col"><a href="shop-category.html" class="btn btn-secondary mt-0"><i class="fa fa-chevron-left"></i> Continue shopping</a></div>
                 <div class="right-col">
@@ -73,36 +71,7 @@
           </div>
 
         </div>
-        <div class="col-lg-3">
-          <div id="order-summary" class="box mt-0 mb-4 p-0">
-            <div class="box-header mt-0">
-                <h3>Order summary</h3>
-            </div>
-            <div class="table-responsive">
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <td>Order subtotal</td>
-                    <th>$446.00</th>
-                  </tr>
-                  <tr>
-                    <td>Shipping and handling</td>
-                    <th>$10.00</th>
-                  </tr>
-                  <tr>
-                    <td>Tax</td>
-                    <th>$0.00</th>
-                  </tr>
-                  <tr class="total">
-                    <td>Total</td>
-                    <th>$456.00</th>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
 
-        </div>
       </div>
     </div>
   </div>
@@ -124,9 +93,6 @@
                }
            }); //end
         }
-
-
-
 
 </script>
 @endsection

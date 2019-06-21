@@ -44,12 +44,7 @@
                             <input type="hidden" name="id" value="{{$detail_product->id}}">
                     <p>stock:{{$detail_product->stock}}</p>
                     <p>weigth:{{$detail_product->weigth}}</p>
-                    <select class="bs-select">
-                      <option value="small">jne</option>
-                      <option value="medium">Medium</option>
-                      <option value="large">Large</option>
-                      <option value="x-large">X Large</option>
-                    </select><br>
+
                    <label for="qyt">qyt:</label>
                     <select class="bs-select" name="qyt">
                     @for ($i = 1; $i <=$detail_product->stock; $i++)
@@ -96,11 +91,7 @@
                   </p>
                 </form>
               </div>
-              {{-- <div data-slider-id="1" class="owl-thumbs">
-                <button class="owl-thumb-item"><img src="img/detailsquare.jpg" alt="" class="img-fluid"></button>
-                <button class="owl-thumb-item"><img src="img/detailsquare2.jpg" alt="" class="img-fluid"></button>
-                <button class="owl-thumb-item"><img src="img/detailsquare3.jpg" alt="" class="img-fluid"></button>
-              </div> --}}
+
             </div>
           </div>
 

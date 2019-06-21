@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     @yield('head')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="{{ asset('assets/user/vendor/bootstrap/css/bootstrap.min.css')}}">
     <!-- Font Awesome CSS-->
