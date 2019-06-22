@@ -18,7 +18,7 @@ class CartController extends Controller
         $id=$request->id;
         $data=product::findOrFail($id);
         // Cart::add(['id' => $data->id,'name' => $data->name, 'qty' => $request->qyt, 'price' => $data->price]);
-        Cart::add( $data->id, $data->name, '1',  $data->price,array());
+        Cart::add( $data->id, $data->name, $request->qty,  $data->price,array());
         return redirect()->route('cart.keranjang');
     }
     public function keranjang(){
@@ -50,6 +50,7 @@ class CartController extends Controller
         foreach(Cart::content() as $row) {
             $product=Product::find($row->id);
             $weigth= $product->weigth * $row->qty;
+
             $city=json_decode(city(),true);
             $origin=$product->user->address;
             foreach($city['rajaongkir']['results'] as $key){

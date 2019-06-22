@@ -115,7 +115,8 @@
 
                   <tr class="total">
                     <td>Total</td>
-                    <th>$456.00</th>
+                    <td id="total"></td>
+                    <th></th>
                   </tr>
                 </tbody>
               </table>
@@ -126,8 +127,21 @@
       </div>
     </div>
   </div>
+{{-- explode data dari cart karena mengandung , --}}
+@php
+    $str =Cart::subtotal();
+    $str=substr($str,0,-3);
+    $str=explode(",",$str);
+    for($i=0;$i<count($str);$i++){
+        $x[]= $str[$i];
+    }
+    $x=implode($x);
+@endphp
+<input type="hidden" name="sum" id="sum" value="{{$x}}">
+
 @endsection
 @section('footer')
+
 <script>
         function saveCart(obj) {
             var key = $(obj).attr("id");
@@ -144,7 +158,6 @@
            }); //end
         }
 </script>
-
 <script>
     function test(){
         cek();
@@ -155,14 +168,19 @@
     function cek(){
      var data=$("#select-search").val();
      var courier=$('#courier').val();
+      var x=$("#sum").val();
+    //  console.log(x);
      $.ajax({
                url: "ongkir/"+data,
                type:"get",
-
                data: {'destination':data,'courier':courier},
                     success:function(data){
                     $('#ongkir').text(data);
-                    console.log(data);
+                    var jml=parseInt(x) + parseInt(data);
+                    $('#total').text(jml);
+                    // console.log((parseFloat(x)));
+                    console.log(jml);
+
                }
            }); //end
     }

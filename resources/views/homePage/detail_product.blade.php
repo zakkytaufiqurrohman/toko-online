@@ -45,11 +45,11 @@
                     <p>stock:{{$detail_product->stock}}</p>
                     <p>weigth:{{$detail_product->weigth}}</p>
 
-                   <label for="qyt">qyt:</label>
-                    <select class="bs-select" name="qyt">
-                    @for ($i = 1; $i <=$detail_product->stock; $i++)
-                        <option value="{{$i}}">{{$i}}</option>
-                    @endfor
+                   <label for="qyt">qty:</label>
+                    <select  name="qty">
+                        @for ($i = 1; $i <=$detail_product->stock; $i++)
+                            <option value="{{$i}}">{{$i}}</option>
+                        @endfor
                   </select>
                     {{-- tombol + - --}}
                     {{-- <table>
@@ -83,7 +83,7 @@
                               document.getElementById('2').onclick = reply_click;
                 </script> --}}
                   <p class="price">
-                     IDR: {{ number_format($detail_product->price)}}
+                     IDR:{{ $detail_product->price}}
                   </p>
                   <p class="text-center">
                   <button type="submit" class="btn btn-template-outlined"><i class="fa fa-shopping-cart"></i> Add to cart</button>

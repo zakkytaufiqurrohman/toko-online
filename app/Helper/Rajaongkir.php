@@ -23,7 +23,7 @@ if(!function_exists('city')){
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => "GET",
           CURLOPT_HTTPHEADER => array(
-            "key: 0b48750be76c2e31a7473680944f0aff"
+            "key: 85d9f98f2bf0327db08324ec64c6e155"
           ),
         ));
 
@@ -55,7 +55,7 @@ if(!function_exists('cost')){
         CURLOPT_POSTFIELDS => 'origin='.$origin.'&destination='.$destination.'&weight='.$weigth.'&courier='.$courier,
         CURLOPT_HTTPHEADER => array(
             "content-type: application/x-www-form-urlencoded",
-            "key: 0b48750be76c2e31a7473680944f0aff"
+            "key:85d9f98f2bf0327db08324ec64c6e155"
         ),
         ));
 
