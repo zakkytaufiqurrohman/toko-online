@@ -22,13 +22,15 @@
         <div class="row">
             <div id="checkout" class="col-lg-9">
               <div class="box border-bottom-0">
-                <form method="get" action="shop-checkout2.html">
+              <form method="post" action="{{route('transaction')}}">
+                @csrf
+
                   <div class="content">
                     <div class="row">
                       <div class="col-sm-12">
                         <div class="form-group">
                           <label for="name">name</label>
-                          <input id="name" type="text" class="form-control">
+                          <input id="name" type="text" class="form-control" name="name">
                         </div>
                       </div>
 
@@ -37,7 +39,7 @@
                       <div class="col-sm-12">
                         <div class="form-group">
                           <label for="email">email</label>
-                          <input id="email" type="email" class="form-control">
+                          <input id="email" type="email" class="form-control" name="email">
                         </div>
                     </div>
                     </div>
@@ -60,13 +62,13 @@
                     <div class="col-sm-6 col-md-4">
                         <div class="form-group">
                           <label for="country">kode pos</label>
-                          <input type="tetx" name="kode_pos" class="form-control" id="kode_pos">
+                          <input type="text" name="portal_code" class="form-control" id="kode_pos">
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4">
                             <div class="form-group">
                               <label for="state">courier</label>
-                              <select id="courier" class="form-control" onchange="cek()">
+                              <select id="courier" class="form-control" onchange="cek()" >
                                   <option value="">pilih courier</option>
                                   <option value="jne">jne</option>
                                   <option value="tiki">tiki</option>
@@ -76,13 +78,13 @@
                     <div class="col-sm-12 col-md-12">
                         <div class="form-group">
                           <label for="province">province</label>
-                          <input id="province" type="text" class="form-control">
+                          <input id="province" type="text" class="form-control" name="province">
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-12">
                             <div class="form-group">
                               <label for="alamat">alamat</label>
-                              <input id="alamat" type="text" class="form-control">
+                              <input id="alamat" type="text" class="form-control" name="address">
                             </div>
                         </div>
                     </div>
@@ -90,7 +92,7 @@
                   <div class="box-footer d-flex flex-wrap align-items-center justify-content-between">
                     <div class="left-col"><a href="shop-basket.html" class="btn btn-secondary mt-0"><i class="fa fa-chevron-left"></i>Back to basket</a></div>
                     <div class="right-col">
-                      <button type="submit" class="btn btn-template-main">Continue to Delivery Method<i class="fa fa-chevron-right"></i></button>
+                      <button type="submit" class="btn btn-template-main">Save<i class="fa fa-chevron-right"></i></button>
                     </div>
                   </div>
                 </form>
@@ -180,7 +182,6 @@
                     $('#total').text(jml);
                     // console.log((parseFloat(x)));
                     console.log(jml);
-
                }
            }); //end
     }

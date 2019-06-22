@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\product;
 use App\category;
+use App\transaction;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
@@ -46,7 +47,6 @@ class CartController extends Controller
     public function ongkir($data){
         $destination=$_GET['destination'];
         $courier=$_GET['courier'];
-
         foreach(Cart::content() as $row) {
             $product=Product::find($row->id);
             $weigth= $product->weigth * $row->qty;
@@ -59,17 +59,56 @@ class CartController extends Controller
                     $temp=cost($tujuan,$destination,$weigth,$courier);
                     $hasil=json_decode($temp,true);
                     // echo $x=$hasil['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'];
-                   Cart::update($row->rowId,['options'=>
-                        [
-                             'code'=>$hasil['rajaongkir']['results'][0]['code'],
-                             'name'=>$hasil['rajaongkir']['results'][0]['name'],
-                             'value'=>$hasil['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'],
-                             'etd'=>$hasil['rajaongkir']['results'][0]['costs'][0]['cost'][0]['etd']
-                    ]]);
+                    Cart::update($row->rowId,['options'=>
+                            [
+                                'code'=>$hasil['rajaongkir']['results'][0]['code'],
+                                'name'=>$hasil['rajaongkir']['results'][0]['name'],
+                                'value'=>$hasil['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'],
+                                'etd'=>$hasil['rajaongkir']['results'][0]['costs'][0]['cost'][0]['etd']
+                        ]]);
                     return $row->options->value;
 
                 }
             }
+        }
+    }
+    public function transaction(Request $request){
+
+        $str =Cart::subtotal();
+        $str=substr($str,0,-3);
+        $str=explode(",",$str);
+        for($i=0;$i<count($str);$i++){
+            $x[]= $str[$i];
+        }
+        $x=implode($x);
+        //
+
+        // $this->validate($request,[
+        //     'name'=>'required',
+        // ]);
+
+        $request['code']=date('ymdhis');
+        $request['user_id']=Auth::user()->id;
+        foreach(Cart::content() as $row) {
+            $id=$row->rowId;
+            $product=Product::find($row->id);
+            $request['qyt']=$row->qty;
+            $ekpedisi=[
+                'code'=>$row->options->code,
+                'name'=>$row->options->name,
+                'value'=>$row->options->value,
+                'etd'=>$row->options->etd,
+            ];
+            $request['product_id']=$product->id;
+        }
+        $request['ekspedisi']=$ekpedisi;
+        $request['subtotal']=$x;
+        // return $request->all();
+        transaction::create($request->all());
+        Cart::remove($id);
+        return redirect()->route('product');
+        if(Cart::count() ==0){
+            return redirect()->route('product');
         }
     }
 

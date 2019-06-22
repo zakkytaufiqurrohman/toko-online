@@ -10,7 +10,7 @@ class transaction extends Model
     public function user(){
         return $this->belongsTo('App\user');
     }
-    protected $fillable=['code','user_id','product_id','qyt','subtotal','name','adddes','portal_code','ekpedisi','paymen'];
+    protected $fillable=['code','user_id','product_id','qyt','subtotal','name','address','portal_code','ekspedisi'];
 
     protected $casts=[
         'ekspedisi'=>'array'

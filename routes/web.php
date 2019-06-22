@@ -59,4 +59,5 @@ Route::get('idkota/{data}',function($data){
    return city($data);
 });
 Route::get('/ongkir/{data}','Home\CartController@ongkir')->name('cart.ongkir');
+Route::post('transaction','Home\CartController@transaction')->name('transaction');
 
