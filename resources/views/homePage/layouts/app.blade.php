@@ -70,6 +70,7 @@
             <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle"> <img src="{{ asset('assets/dist/img/'.auth::user()->photo)}} " alt="" width="20" class="rounded-circle"> {{ auth::user()->name}}</a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-item"><a href="contact.html" class="nav-link">my account</a></li>
+                    <li class="dropdown-item"><a href="{{route('myorder')}}" class="nav-link">my order</a></li>
                       <li class="dropdown-item"><a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}</a></li>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\product;
 use App\category;
 use App\user;
+use App\transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Mail;
@@ -121,5 +122,6 @@ class HomePageController extends Controller
 
         }
     }
+
 
 }

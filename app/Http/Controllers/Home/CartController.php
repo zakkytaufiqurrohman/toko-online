@@ -111,5 +111,18 @@ class CartController extends Controller
             return redirect()->route('product');
         }
     }
+    public function myorder(){
+        $category=$this->category;
+        $data=transaction::groupBy('code')->where('user_id',Auth::user()->id)->get();
+        return view('homePage.myorder',compact('data','category'));
+    }
+    public function detail($id){
+        $category=$this->category;
+        $data=transaction::orderBy('code')->where('code',$id)->first();
+        $datas=transaction::where('code',$id)->get();
+        return view('homepage.detail_transaction',compact('data','datas','category'));
+
+    }
+
 
 }
