@@ -81,12 +81,6 @@ class CartController extends Controller
             $x[]= $str[$i];
         }
         $x=implode($x);
-        //
-
-        // $this->validate($request,[
-        //     'name'=>'required',
-        // ]);
-
         $request['code']=date('ymdhis');
         $request['user_id']=Auth::user()->id;
         foreach(Cart::content() as $row) {
@@ -103,7 +97,6 @@ class CartController extends Controller
         }
         $request['ekspedisi']=$ekpedisi;
         $request['subtotal']=$x;
-        // return $request->all();
         transaction::create($request->all());
         Cart::remove($id);
         return redirect()->route('product');
